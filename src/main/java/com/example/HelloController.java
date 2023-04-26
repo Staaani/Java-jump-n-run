@@ -38,7 +38,8 @@ public class HelloController implements Initializable {
         gameLoop.start();
     }
 
-    void pressed(KeyEvent event){
+    @FXML
+    public void pressed(KeyEvent event){
         if(event.getCode() == KeyCode.SPACE){
             fly();
         }
@@ -92,3 +93,4 @@ public class HelloController implements Initializable {
 
 
 }
+
