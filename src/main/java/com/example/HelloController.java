@@ -32,35 +32,35 @@ public class HelloController implements Initializable {
         load();
 
         gameLoop = new AnimationTimer() {
-
-
             @Override
             public void handle(long l) {
                 //update();
             }
-
-
         };
         gameLoop.start();
     }
 
     @FXML
-    public void pressed(KeyEvent event){
-        if(event.getCode() == KeyCode.SPACE){
+    public void pressed(KeyEvent event) {
+        if (event.getCode() == KeyCode.SPACE) {
             fly();
         } else if (event.getCode() == KeyCode.D) {
             moveRight();
+        }else if (event.getCode() == KeyCode.A) {
+            moveLeft();
+        }else if (event.getCode() == KeyCode.S) {
+            moveDown();
         }
     }
 
     private void moveRight() {
-        if (bird.getLayoutX() + bird.getX() <= jumpWidth) {
-            moveBirdX(-(bird.getLayoutX() + bird.getX()));
-            time = 0;
-            return;
-        }
-        moveBirdX(-jumpWidth);
-        time = 0;
+        moveBirdX(20);
+    }
+    private void moveLeft() {
+        moveBirdX(-20);
+    }
+    private void moveDown() {
+        moveBirdY(20);
     }
 
 
@@ -75,47 +75,36 @@ public class HelloController implements Initializable {
     }
 
     private void update() {
-        time ++;
+        time++;
         moveBirdY(yDelta * time);
 
-
-        if(isBirdDead()){
+        if (isBirdDead()) {
             resetBird();
         }
-
     }
 
-    private void load(){
+    private void load() {
         System.out.println("Game starting");
 
     }
 
-    private void moveBirdY(double positionChange){
+    private void moveBirdY(double positionChange) {
         bird.setY(bird.getY() + positionChange);
     }
 
-    private void moveBirdX(double positionChange){
+    private void moveBirdX(double positionChange) {
         bird.setX(bird.getX() + positionChange);
     }
 
-    private boolean isBirdDead(){
+    private boolean isBirdDead() {
         double birdY = bird.getLayoutY() + bird.getY();
         return birdY >= plane.getHeight();
     }
 
-    private void resetBird(){
+    private void resetBird() {
         bird.setY(0);
         time = 0;
     }
-
-    @FXML
-    private Label welcomeText;
-
-    @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
-    }
-
 
 }
 
