@@ -25,15 +25,21 @@ public class HelloController implements Initializable {
     double time = 0;
     int jumpHeight = 100;
 
+    int jumpWidth = 50;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         load();
 
         gameLoop = new AnimationTimer() {
+
+
             @Override
             public void handle(long l) {
-                update();
+                //update();
             }
+
+
         };
         gameLoop.start();
     }
@@ -42,8 +48,21 @@ public class HelloController implements Initializable {
     public void pressed(KeyEvent event){
         if(event.getCode() == KeyCode.SPACE){
             fly();
+        } else if (event.getCode() == KeyCode.D) {
+            moveRight();
         }
     }
+
+    private void moveRight() {
+        if (bird.getLayoutX() + bird.getX() <= jumpWidth) {
+            moveBirdX(-(bird.getLayoutX() + bird.getX()));
+            time = 0;
+            return;
+        }
+        moveBirdX(-jumpWidth);
+        time = 0;
+    }
+
 
     private void fly() {
         if (bird.getLayoutY() + bird.getY() <= jumpHeight) {
@@ -59,9 +78,11 @@ public class HelloController implements Initializable {
         time ++;
         moveBirdY(yDelta * time);
 
+
         if(isBirdDead()){
             resetBird();
         }
+
     }
 
     private void load(){
@@ -71,6 +92,10 @@ public class HelloController implements Initializable {
 
     private void moveBirdY(double positionChange){
         bird.setY(bird.getY() + positionChange);
+    }
+
+    private void moveBirdX(double positionChange){
+        bird.setX(bird.getX() + positionChange);
     }
 
     private boolean isBirdDead(){
