@@ -4,6 +4,6 @@ module com.example.demo1111 {
             
             requires com.dlsc.formsfx;
                         
-    opens com.example.demo1111 to javafx.fxml;
-    exports com.example.demo1111;
+    opens com.example to javafx.fxml;
+    exports com.example;
 }
