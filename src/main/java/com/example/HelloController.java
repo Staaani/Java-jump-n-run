@@ -1,6 +1,8 @@
 package com.example;
 
 import javafx.animation.AnimationTimer;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -8,6 +10,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -43,14 +46,16 @@ public class HelloController implements Initializable {
     @FXML
     public void pressed(KeyEvent event) {
         if (event.getCode() == KeyCode.SPACE) {
-            fly();
+//            fly();
+            jump();
         } else if (event.getCode() == KeyCode.D) {
             moveRight();
         }else if (event.getCode() == KeyCode.A) {
             moveLeft();
-        }else if (event.getCode() == KeyCode.S) {
-            moveDown();
         }
+//        else if (event.getCode() == KeyCode.S) {
+//            moveDown();
+//        }
     }
 
     private void moveRight() {
@@ -59,20 +64,37 @@ public class HelloController implements Initializable {
     private void moveLeft() {
         moveBirdX(-20);
     }
-    private void moveDown() {
-        moveBirdY(20);
-    }
+//    private void moveDown() {
+//        moveBirdY(20);
+//    }
 
-
-    private void fly() {
-        if (bird.getLayoutY() + bird.getY() <= jumpHeight) {
-            moveBirdY(-(bird.getLayoutY() + bird.getY()));
-            time = 0;
+    private void jump() {
+        // If the bird is already in the air, don't allow another jump
+        if (bird.getLayoutY() < 0) {
             return;
         }
-        moveBirdY(-jumpHeight);
-        time = 0;
+
+        // Move the bird up by 30 pixels
+        moveBirdY(-30);
+
+        // Schedule a task to move the bird back down after 0.3 seconds
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.3), event -> {
+            moveBirdY(30);
+            time = 0;
+        }));
+
+        timeline.play();
     }
+
+//    private void fly() {
+//        if (bird.getLayoutY() + bird.getY() <= jumpHeight) {
+//            moveBirdY(-(bird.getLayoutY() + bird.getY()));
+//            time = 0;
+//            return;
+//        }
+//        moveBirdY(-jumpHeight);
+//        time = 0;
+//    }
 
     private void update() {
         time++;
