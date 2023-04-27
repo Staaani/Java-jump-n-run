@@ -13,7 +13,7 @@ public class HelloApplication extends javafx.application.Application {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         scene.getRoot().requestFocus(); //
-        stage.setTitle("Hello!");
+        stage.setTitle("Bitcoin Runner");
         stage.setScene(scene);
         stage.show();
     }

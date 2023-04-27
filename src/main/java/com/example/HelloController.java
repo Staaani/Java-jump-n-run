@@ -6,6 +6,8 @@ import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -24,16 +26,25 @@ public class HelloController implements Initializable {
     @FXML
     private Rectangle bird;
 
+    @FXML
+    private Rectangle platform1;
+
+    @FXML
+    private ImageView background;
+
     double yDelta = 0.02;
     double time = 0;
     int jumpHeight = 100;
 
     int jumpWidth = 50;
 
+    // Load in our background image from resources folder
+    Image backgroundImage = new Image(getClass().getResourceAsStream("/images/background.png"));
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         load();
-
+        background.setImage(backgroundImage);
         gameLoop = new AnimationTimer() {
             @Override
             public void handle(long l) {
@@ -110,8 +121,24 @@ public class HelloController implements Initializable {
 
     }
 
-    private void moveBirdY(double positionChange) {
-        bird.setY(bird.getY() + positionChange);
+//    private void moveBirdY(double positionChange) {
+//        bird.setY(bird.getY() + positionChange);
+//    }
+
+    private void moveBirdY(double positionChange){
+        double oldY = bird.getY();
+        double newY = oldY + positionChange;
+
+        // Move bird up/down by given amount
+        bird.setY(newY);
+
+        // Check if we need to move our background too (if bird is near edge of screen)
+        double screenWidth = plane.getWidth();
+        if (bird.getBoundsInParent().getMaxX() >= 0.8 * screenWidth) {
+            background.setX(background.getX() - 0.5 * positionChange);
+        } else if (bird.getBoundsInParent().getMinX() <= 0.2 * screenWidth) {
+            background.setX(background.getX() - 0.5 * positionChange);
+        }
     }
 
     private void moveBirdX(double positionChange) {

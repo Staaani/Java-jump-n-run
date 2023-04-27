@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 
 <AnchorPane fx:id="plane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#pressed" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.HelloController">
    <children>
-      <Rectangle fx:id="bird" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="23.0" layoutX="83.0" layoutY="390.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
-      <Rectangle fx:id="platform1" arcHeight="5.0" arcWidth="5.0" fill="#a1783f" height="33.0" layoutX="40.0" layoutY="413.0" stroke="BLACK" strokeType="INSIDE" width="594.0" />
+      <ImageView fitHeight="500.0" fitWidth="700.0">
+         <image>
+            <Image url="@../../images/background.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="background" fitHeight="500" fitWidth="700" />
+      <Rectangle fx:id="bird" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="23.0" layoutX="46.0" layoutY="406.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
    </children>
 </AnchorPane>
