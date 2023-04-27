@@ -32,15 +32,13 @@ public class HelloController implements Initializable {
     /* Load in our background image from resources folder and store it as an instance of Image.
       We use getClass() method with getResourceAsStream() method because this is a JavaFX application,
       not a standard Java application */
-    Image backgroundFloorImage = new Image(getClass().getResourceAsStream("/images/floorBackground.png"));
-    Image backgroundSkyImage = new Image(getClass().getResourceAsStream("/images/skyBackground.png"));
+    Image backgroundImage = new Image(getClass().getResourceAsStream("/images/background.png"));
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         load(); // Call load() method when program starts up
         /* Set the ImageView's image property using setImage() method and pass it backgroundImage variable */
-        background.setImage(backgroundFloorImage);
-        background.setImage(backgroundSkyImage);
+        background.setImage(backgroundImage);
         gameLoop = new AnimationTimer() {
             /* Create an anonymous inner class that extends AnimationTimer and override its handle()
                method which will be called every frame */
