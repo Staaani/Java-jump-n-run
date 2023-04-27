@@ -70,10 +70,10 @@ public class HelloController implements Initializable {
     }
 
     private void moveRight() {
-        moveBirdX(20);
+        moveBird(20,0);
     }
     private void moveLeft() {
-        moveBirdX(-20);
+        moveBird(-20,0);
     }
 //    private void moveDown() {
 //        moveBirdY(20);
@@ -86,11 +86,11 @@ public class HelloController implements Initializable {
         }
 
         // Move the bird up by 30 pixels
-        moveBirdY(-30);
+        moveBird(10,-30);
 
         // Schedule a task to move the bird back down after 0.3 seconds
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.3), event -> {
-            moveBirdY(30);
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.15), event -> {
+            moveBird(0,30);
             time = 0;
         }));
 
@@ -143,6 +143,28 @@ public class HelloController implements Initializable {
 
     private void moveBirdX(double positionChange) {
         bird.setX(bird.getX() + positionChange);
+    }
+
+    private void moveBird(double xChange, double yChange) {
+        double oldX = bird.getX();
+        double newX = oldX + xChange;
+
+        // Move bird left/right by given amount
+        bird.setX(newX);
+
+        double oldY = bird.getY();
+        double newY = oldY + yChange;
+
+        // Move bird up/down by given amount
+        bird.setY(newY);
+
+        // Check if we need to move our background too (if bird is near edge of screen)
+        double screenWidth = plane.getWidth();
+        if (bird.getBoundsInParent().getMaxX() >= 0.8 * screenWidth) {
+            background.setX(background.getX() - 0.5 * xChange);
+        } else if (bird.getBoundsInParent().getMinX() <= 0.2 * screenWidth) {
+            background.setX(background.getX() - 0.5 * xChange);
+        }
     }
 
     private boolean isBirdDead() {
