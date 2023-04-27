@@ -28,6 +28,8 @@ public class HelloController implements Initializable {
     double time = 0;
 
 
+
+
     /* Load in our background image from resources folder and store it as an instance of Image.
       We use getClass() method with getResourceAsStream() method because this is a JavaFX application,
       not a standard Java application */
@@ -35,6 +37,7 @@ public class HelloController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         load(); // Call load() method when program starts up
         /* Set the ImageView's image property using setImage() method and pass it backgroundImage variable */
         background.setImage(backgroundImage);
@@ -46,6 +49,7 @@ public class HelloController implements Initializable {
                 //update(); // Call update() method every frame
             }
         };
+
         gameLoop.start(); // Start the game loop
     }
 
@@ -150,6 +154,8 @@ public class HelloController implements Initializable {
         bird.setY(0);
         time = 0;
     }
+
+
 
 }
 
