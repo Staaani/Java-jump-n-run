@@ -25,9 +25,8 @@ public class HelloController implements Initializable {
     private Rectangle bird; // Reference to the background image in our FXML file
     @FXML
     private ImageView background; // Reference to the background image in our FXML file
-
-    double yDelta = 0.02; // Set a constant value for how fast we want the bird to fall down (y-axis)
     double time = 0;
+
 
     /* Load in our background image from resources folder and store it as an instance of Image.
       We use getClass() method with getResourceAsStream() method because this is a JavaFX application,
@@ -54,9 +53,11 @@ public class HelloController implements Initializable {
     public void pressed(KeyEvent event) {
         if (event.getCode() == KeyCode.SPACE) {
             jump(); // Call jump() method when SPACE key is pressed
+        } else if (event.getCode() == KeyCode.W) {
+            jump(); // Call jump() method when W key is pressed
         } else if (event.getCode() == KeyCode.D) {
             moveRight(); // Call moveRight() method when D key is pressed
-        }else if (event.getCode() == KeyCode.A) {
+        } else if (event.getCode() == KeyCode.A) {
             moveLeft(); // Call moveLeft() method when A key is pressed
         }
 
@@ -65,12 +66,13 @@ public class HelloController implements Initializable {
     private void moveRight() {
         /* Move bird to the right by 20 pixels. This will be called in our keyPressed()
           method whenever user presses 'D' */
-        moveBird(20,0);
+        moveBird(20, 0);
     }
+
     private void moveLeft() {
         /* Move bird to the left by 20 pixels. This will be called in our keyPressed()
          method whenever user presses 'A' */
-        moveBird(-20,0);
+        moveBird(-20, 0);
     }
 
     private void jump() {
@@ -81,27 +83,27 @@ public class HelloController implements Initializable {
         }
 
         // Move the bird up by 10x ,30y pixels
-        moveBird(10,-30);
+        moveBird(10, -30);
 
         /* Create an instance of Timeline with a duration of 0.3 seconds and add a KeyFrame that calls this lambda expression,
               which moves the bird back down after jumping for some time */
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.15), event -> {
-            moveBird(0,30);
+            moveBird(0, 30);
             time = 0;
         }));
 
         timeline.play(); // Start the Timeline
     }
 
-    private void update() {
-        /* This method is called every frame by our game loop. It updates the bird's position and checks if it has collided with anything */
-        time++;
-        moveBird(0,yDelta * time);
-
-        if (isBirdDead()) {
-            resetBird(); // If bird has hit the ground, reset its position to top of screen.
-        }
-    }
+//    private void update() {
+//        /* This method is called every frame by our game loop. It updates the bird's position and checks if it has collided with anything */
+//        time++;
+//        moveBird(0, yDelta * time);
+//
+//        if (isBirdDead()) {
+//            resetBird(); // If bird has hit the ground, reset its position to top of screen.
+//        }
+//    }
 
     private void load() {
         System.out.println("Game starting"); // Print a message when program starts up
