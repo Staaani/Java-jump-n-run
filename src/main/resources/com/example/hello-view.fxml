@@ -13,6 +13,6 @@
          </image>
       </ImageView>
       <ImageView fx:id="background" fitHeight="500" fitWidth="700" />
-      <Rectangle fx:id="bird" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="23.0" layoutX="46.0" layoutY="406.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
+      <Rectangle fx:id="playerRect" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="23.0" layoutX="46.0" layoutY="406.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
    </children>
 </AnchorPane>
