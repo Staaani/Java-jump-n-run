@@ -1,12 +1,13 @@
 package com.example;
 
+import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 import java.util.Random;
 
-public class Platform {
+public class Platform extends Node {
     private double xPos;
     private double yPos;
     private double width;

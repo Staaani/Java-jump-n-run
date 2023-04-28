@@ -1,5 +1,8 @@
 package com.example;
 
+import javafx.geometry.Bounds;
+import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 import javafx.animation.KeyFrame;
@@ -62,8 +65,28 @@ public class Player {
         /* Calculate new Y-coordinate for the bird after moving it up or down */
         playerRect.setY(newY);
 
-
     }
+
+//    public boolean onGround(Group root, double playerWidth, double playerHeight) {
+//        Platform groundBelow = null;
+//        Bounds playerBounds = getBoundsInParent();
+//
+//        for(Node node : root.getChildren()) {
+//            if(node instanceof Platform && node.getBoundsInParent().intersects(playerBounds.getMinX() + 1,
+//                    playerBounds.getMaxY() + 1,
+//                    playerWidth - 2,
+//                    playerHeight)) {
+//                groundBelow = (Platform)node;
+//                break;
+//            }
+//        }
+//
+//        if(groundBelow != null || getY() > 620) {
+//            return true;
+//        } else {
+//            return false;
+//        }
+//    }
 
     public boolean isPlayerDead() {
         /* This method checks whether or not our bird has collided with anything.
