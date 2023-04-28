@@ -25,6 +25,7 @@ public class HelloController implements Initializable {
        We use getClass() method with getResourceAsStream() method because this is a JavaFX application,
        not a standard Java application */
     Image backgroundImage = new Image(getClass().getResourceAsStream("/images/background.png"));
+    Image playerImage = new Image(getClass().getResourceAsStream("/images/cloud.png"));
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -32,12 +33,11 @@ public class HelloController implements Initializable {
 
         /* Set the ImageView's image property using setImage() method and pass it backgroundImage variable */
         ImageView background = new ImageView(backgroundImage);
+        ImageView playerView = new ImageView(playerImage);
         plane.getChildren().add(background);
+        plane.getChildren().add(playerView);
 
-        Rectangle playerRect = new Rectangle(50, 50); // Create a rectangle for the player
-        plane.getChildren().add(playerRect); // Add the rectangle to the pane
-
-        player = new Player(playerRect, background,325,-380); // Initialize our Player object with its attributes
+        player = new Player(playerView, background,340,-400); // Initialize our Player object with its attributes
 
         gameLoop = new AnimationTimer() {
             /* Create an anonymous inner class that extends AnimationTimer and override its handle()

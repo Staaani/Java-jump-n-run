@@ -1,17 +1,16 @@
 package com.example;
 
 import javafx.scene.image.ImageView;
-import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 
 public class Player {
-    private Rectangle playerRect; // Reference to the background image in our FXML file
+    private ImageView playerRect; // Reference to the background image in our FXML file
     private ImageView backgroundImg; // Reference to the background image in our FXML file
     private double time = 0;
 
-    public Player(Rectangle playerRect, ImageView backgroundImg, double initX, double initY) {
+    public Player(ImageView playerRect, ImageView backgroundImg, double initX, double initY) {
         this.playerRect = playerRect;
         this.backgroundImg = backgroundImg;
         this.playerRect.setX(initX);
