@@ -11,9 +11,11 @@ public class Player {
     private ImageView backgroundImg; // Reference to the background image in our FXML file
     private double time = 0;
 
-    public Player(Rectangle playerRect, ImageView backgroundImg) {
+    public Player(Rectangle playerRect, ImageView backgroundImg, double initX, double initY) {
         this.playerRect = playerRect;
         this.backgroundImg = backgroundImg;
+        this.playerRect.setX(initX);
+        this.playerRect.setY(-initY);
     }
 
     public void moveRight() {
@@ -62,17 +64,6 @@ public class Player {
         playerRect.setY(newY);
 
 
-        double screenWidth = backgroundImg.getParent().getBoundsInLocal().getWidth();
-        /* Check if we need to move our background too (if bird is near edge of screen) */
-        if (playerRect.getBoundsInParent().getMaxX() >= 0.8 * screenWidth) {
-            backgroundImg.setX(backgroundImg.getX() - 0.5 * xChange);
-           /* If the bird is on the right side of the screen, move the background image to left by half
-           as much as we moved the bird */
-        } else if (playerRect.getBoundsInParent().getMinX() <= 0.2 * screenWidth) {
-            backgroundImg.setX(backgroundImg.getX() - 0.5 * xChange);
-           /* If the bird is on the left side of the screen, move the background image to right by half
-           as much as we moved the bird */
-        }
     }
 
     public boolean isPlayerDead() {
