@@ -48,7 +48,9 @@ public class HelloApplication extends Application {
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         Pane root = fxmlLoader.load();
-        Platform.generatePlatforms(root);
+        Platform platform = new Platform(200,330,50, 20);
+        root.getChildren().add(platform.getView());
+//        Platform.generatePlatforms(root);
 
         Scene scene = new Scene(root);
         scene.getRoot().requestFocus();

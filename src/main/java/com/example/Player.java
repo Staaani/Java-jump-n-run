@@ -37,12 +37,12 @@ public class Player {
         }
 
         // Move the bird up by 10x ,30y pixels
-        movePlayer(10, -30);
+        movePlayer(10, -100);
 
         /* Create an instance of Timeline with a duration of 0.3 seconds and add a KeyFrame that calls this lambda expression,
         which moves the bird back down after jumping for some time */
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.15), event -> {
-            movePlayer(0, 30);
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.2), event -> {
+            movePlayer(0, 100);
             time = 0;
         }));
 
